@@ -27,6 +27,11 @@ export const SearchScreen = () => {
         
        if(term.length === 0) {
         return setPokemonFiltered([])
+       }else{
+           const pokemonById = simplePokemonList.find( poke => poke.id ===term )
+           setPokemonFiltered(
+               (pokemonById) ? [pokemonById]: []
+           )
        }
 
        setPokemonFiltered(
