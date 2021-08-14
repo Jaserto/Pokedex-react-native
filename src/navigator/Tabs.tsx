@@ -1,12 +1,15 @@
-import React from 'react'
-
+import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { Navigator } from './Navigator';
-import { SearchScreen } from '../screens/SearchScreen';
 import { Platform } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 
+import { Tab1 } from './Tab1';
+
+import { Tab2Screen } from './Tab2';
+
 const Tab = createBottomTabNavigator();
+
+
 
 export const Tabs = () => {
   return (
@@ -14,45 +17,48 @@ export const Tabs = () => {
         sceneContainerStyle={{
             backgroundColor: 'white'
         }}
-        screenOptions={{
-            headerShown: false,
-            tabBarActiveTintColor: '#5856D6',
-            tabBarLabelStyle: {     
-                marginBottom:(Platform.OS === 'ios' ? 0 : 10)
+        tabBarOptions={{
+            activeTintColor: '#5856D6',
+            labelStyle: {
+                marginBottom: ( Platform.OS === 'ios' ) ? 0 : 10
             },
-            tabBarStyle: {
-                position:'absolute',
+            style: {
+                position: 'absolute',
                 backgroundColor: 'rgba(255,255,255, 0.92)',
                 borderWidth: 0,
-                elevation:0,
-                height: (Platform.OS=== 'ios') ? 80 :60
-            },
-           
-          
+                elevation: 0,
+                height: (Platform.OS === 'ios' )? 80 : 60
+            }
         }}
     >
       <Tab.Screen 
-        name="Home" 
-        component={ Navigator }
+        name="HomeScreen" 
+        component={ Tab1 }
         options={{
             tabBarLabel: "Listado",
-            tabBarIcon:({color}) => (
-                <Icon color={color} size={20} name="list-outline"
+            tabBarIcon: ({ color }) => (
+                <Icon 
+                    color={ color } 
+                    size={ 25 } 
+                    name="list-outline"
                 />
             )
         }}
       />
       <Tab.Screen 
-        name="Search" 
-        component={ SearchScreen }
+        name="SearchScreen" 
+        component={ Tab2Screen } 
         options={{
-            tabBarLabel: "Listado",
-            tabBarIcon:({color}) => (
-                <Icon color={color} size={20} name="search-outline"
+            tabBarLabel: "Búsqueda",
+            tabBarIcon: ({ color }) => (
+                <Icon 
+                    color={ color } 
+                    size={ 25 } 
+                    name="search-outline"
                 />
             )
         }}
-      />
+    />
     </Tab.Navigator>
   );
 }
